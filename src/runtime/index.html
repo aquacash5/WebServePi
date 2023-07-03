@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<!-- script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script-->
+<script src="/sio/socket.io.js"></script>
+<script src="/js/mytest.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<title>MyTest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="css/mystyles.css">
+</head>
+<body onload="Init();">
+<input type="text" id="message" onfocus="this.value=''">
+<button onclick="sendMessage();">Send Message</button>
+<div id="output"><p>Messages</p></div>
+<textarea readonly id="outscroll" name="outscroll" rows="10" cols="40">Out Scroll Region</textarea>
+</body></html>

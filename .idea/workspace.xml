@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c5706f8c-2603-40a9-b74d-6f3418410e01" name="Changes" comment="Initial Commit">
+      <change beforePath="$PROJECT_DIR$/../TestGaugesButtons/myexample-buttons-hold-works - with external css.html" beforeDir="false" afterPath="$PROJECT_DIR$/../TestGaugesButtons/myexample-buttons-hold-works - with external css.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestGaugesButtons/mystyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TestGaugesButtons/mystyles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebServerMavenJSON/src/main/java/com/example/WebServerMaven.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WebServerMavenJSON/src/main/java/com/example/WebServerMaven.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2S5A30jaSsnr9kMjxU9cKXgVQdy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5706f8c-2603-40a9-b74d-6f3418410e01" name="Changes" comment="Initial Commit" />
+      <created>1688425868582</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688425868582</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WebServerMavenJSON$WebServerMaven.ic" NAME="WebServerMaven Coverage Results" MODIFIED="1685482565451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.*</FILTER>
+    </SUITE>
+  </component>
+</project>

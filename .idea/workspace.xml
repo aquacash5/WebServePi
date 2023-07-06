@@ -10,19 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5706f8c-2603-40a9-b74d-6f3418410e01" name="Changes" comment="Initial Commit">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebServePi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebServePi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyCSSHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyCSSHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSSocketIOClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSSocketIOClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +72,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688656946821</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Initial Commit">
+      <created>1688676088872</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688676088872</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Initial Commit">
+      <created>1688676247709</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688676247709</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

@@ -10,19 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5706f8c-2603-40a9-b74d-6f3418410e01" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE-WebServePi.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README-WebServePi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/WebServePi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/WebServePi_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebServePi.java.backup062423" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebServePi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebServePi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/WebServePi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/WebServePi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runtime/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/runtime/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runtime/index_pi.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/runtime/index_pi.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" afterDir="false" />
@@ -52,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/Chris/Documents/Personal/development/home projects/Java/WebServePi/README.md",
@@ -70,12 +63,36 @@
       <option name="presentableId" value="Default" />
       <updated>1688425868582</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1688655079119</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688655079119</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial Commit">
+      <created>1688655754511</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688655754511</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Initial Commit">
+      <created>1688656946821</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688656946821</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/../.." />
     </ignored-roots>
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WebServerMavenJSON$WebServerMaven.ic" NAME="WebServerMaven Coverage Results" MODIFIED="1685482565451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,9 +1,10 @@
 # Ignore folders
-.idea
-artifacts_dependency_backup
-historical
-out
-target\classes\com\example
+/.idea/**
+/artifacts_dependency_backup/**
+/historical/**
+/out/**
+/release/**
+/target/**
 
 # Ignore files
-*.iml
+/*.iml

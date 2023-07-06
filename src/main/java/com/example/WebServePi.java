@@ -1,4 +1,42 @@
 package com.example;
+/*
+*****************************************************************************
+* Class: WebServePi
+*
+* Purpose:
+* A multi-platform Java 17 Web Chat Server that is integrated with Raspberry Pi 4 B when ran from 64 bit OS.
+* When ran on Pi, provides a 3D soft-button in HTML, CSS, and Javascript with near real-time JSON messaging which controls
+* and listens to the primary circuit hard-button.
+*
+* Open-Source Credits and other references:
+* https://pi4j.com/
+* http://wiringpi.com/
+* https://docs.oracle.com/en/java/javase/11/docs/api/jdk.httpserver/com/sun/net/httpserver/package-use.html#com.sun.net.httpserver
+* https://github.com/FasterXML/jackson
+* https://javadoc.io/static/com.corundumstudio.socketio/netty-socketio/1.7.19/com/corundumstudio/socketio/SocketIOServer.html
+*
+*
+*****************************************************************************
+* Note: All revisions must include this caveat and the below code header including
+*       Initial History up to and including Version 1.0:
+*****************************************************************************
+*  Initial History :
+*
+*      DATE          by whom                   for what
+*     --------------+----------------------+---------------------------------
+*     03/16/2023     Chris C. Lukin         Initial implementation
+*     06/05/2023     Chris C. Lukin         Initial cleanup and documentation
+* © Copyright 2023   Chris C. Lukin
+* Version 1.0
+*****************************************************************************
+*  Revisions:
+*      DATE          by whom                   for what
+*     --------------+----------------------+---------------------------------
+*     xx/xx/xxxx     MyName OrInitials      Next update history goes here
+* Version X.X starts here
+*
+*****************************************************************************
+*/
 
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketConfig;
@@ -28,6 +66,8 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class WebServePi {
 
@@ -38,8 +78,10 @@ public class WebServePi {
     private static final int PORT = 6180;
     private static final int SOCK_PORT = (PORT + 1);
 
-    private static final boolean bDEBUG = new Boolean(false);
+    //private static final boolean bDEBUG = new Boolean(false);
+    private static final boolean bDEBUG = FALSE;
     //private static final boolean bDEBUG = new Boolean(true);
+    //private static final boolean bDEBUG = TRUE;
 
     private static HttpServer httpServer;
 
@@ -55,8 +97,8 @@ public class WebServePi {
 
 
    private static boolean bRaspBPi = false;
-    // create gpio controller
 
+    // create gpio controller
     private static GpioPinDigitalOutput mySoftButton;
 
     public static void main(String[] args) throws Exception {

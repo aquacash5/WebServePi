@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="WebServePi:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5706f8c-2603-40a9-b74d-6f3418410e01" name="Changes" comment="Initial Commit">
-      <change beforePath="$PROJECT_DIR$/../TestGaugesButtons/myexample-buttons-hold-works - with external css.html" beforeDir="false" afterPath="$PROJECT_DIR$/../TestGaugesButtons/myexample-buttons-hold-works - with external css.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestGaugesButtons/mystyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TestGaugesButtons/mystyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WebServerMavenJSON/src/main/java/com/example/WebServerMaven.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WebServerMavenJSON/src/main/java/com/example/WebServerMaven.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE-WebServePi.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README-WebServePi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/WebServePi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/WebServePi_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebServePi.java.backup062423" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WebServePi_jar/WebServePi.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/WebServePi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/WebServePi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/runtime/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/runtime/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/runtime/index_pi.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/runtime/index_pi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyCSSHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyCSSHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSSocketIOClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi$MyJSSocketIOClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/WebServePi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/WebServePi.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +38,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2S5A30jaSsnr9kMjxU9cKXgVQdy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -26,7 +53,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Chris/Documents/Personal/development/home projects/Java/WebServePi/README.md",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3493724",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -39,6 +71,11 @@
       <updated>1688425868582</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../.." />
+    </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WebServerMavenJSON$WebServerMaven.ic" NAME="WebServerMaven Coverage Results" MODIFIED="1685482565451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -30,6 +30,8 @@
       </element>
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-nop/2.0.7/slf4j-nop-2.0.7.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/LICENSE-WebServePi.txt" />
+      <element id="file-copy" path="$PROJECT_DIR$/README-WebServePi.md" />
     </root>
   </artifact>
 </component>

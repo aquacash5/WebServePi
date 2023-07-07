@@ -1,10 +1,10 @@
 # Ignore folders
-/.idea/**
-/artifacts_dependency_backup/**
-/historical/**
-/out/**
-/release/**
-/target/**
+.idea/**
+artifacts_dependency_backup/**
+historical/**
+out/**
+release/**
+target/**
 
 # Ignore files
-/*.iml
+*.iml

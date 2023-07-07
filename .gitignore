@@ -1,9 +1,9 @@
 # Ignore folders
-.idea/**
-artifacts_dependency_backup/**
-historical/**
-out/**
-target/**
+#.idea/**
+#artifacts_dependency_backup/**
+#historical/**
+#out/**
+#target/**
 
 # Ignore files
 *.iml

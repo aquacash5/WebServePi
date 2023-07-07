@@ -4,7 +4,7 @@ artifacts_dependency_backup/**
 historical/**
 out/**
 release/**
-target/**
+target/
 
 # Ignore files
 *.iml

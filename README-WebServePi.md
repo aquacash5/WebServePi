@@ -8,7 +8,7 @@ Initial Copyright 2023 Chris Lukin
 Purpose:
 * A multi-platform Java 17 Web Chat Server that is integrated with Raspberry Pi 4 B when ran from 64 bit OS.
 * When ran on Pi, provides a 3D soft-button in HTML, CSS, and Javascript with near real-time JSON messaging which controls
-and listens to the primary circuit hard-button. When setup correctly, the soft-button will blink the LED.
+and listens to the primary circuit hard-button. When setup correctly, the soft/hard-button will blink the LED.
 
 Open-Source Credits and other references:
 * https://pi4j.com/

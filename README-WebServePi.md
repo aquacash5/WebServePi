@@ -38,7 +38,7 @@ Build Circuit:
 1) Reference "Project 2.1 Push Button Switch & LED"  
 https://github.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/blob/main/Tutorial.pdf
 2) The following changes:  
-* wiringPi Pin 2, Hard Button - pressed input pin 
+* wiringPi Pin 2, Hard Button - "pressed input pin" 
 * wiringPi Pin 4, LED
 * wiringPi Pin 5, additional Soft Button output pin to Hard Button pressed input pin
 

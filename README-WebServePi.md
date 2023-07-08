@@ -8,7 +8,7 @@ Initial Copyright 2023 Chris Lukin
 Purpose:
 * A multi-platform Java 17 Web Chat Server that is integrated with Raspberry Pi 4 B when ran from 64 bit OS.
 * When ran on Pi, provides a 3D soft-button in HTML, CSS, and Javascript with near real-time JSON messaging which controls
-and listens to the primary circuit hard-button.
+and listens to the primary circuit hard-button. When setup correctly, the soft-button will blink the LED.
 
 Open-Source Credits and other references:
 * https://pi4j.com/
@@ -40,7 +40,7 @@ https://github.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/blob/
 2) The following changes:  
 * wiringPi Pin 2, Hard Button - pressed input pin 
 * wiringPi Pin 4, LED
-* wiringPi Pin 5, additional Soft Button output pin to Hard Button pressed input pin   
+* wiringPi Pin 5, additional Soft Button output pin to Hard Button pressed input pin
 
 Execute:  
 java -jar WebServePi.jar

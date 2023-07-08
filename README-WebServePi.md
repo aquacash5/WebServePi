@@ -47,4 +47,4 @@ Execute after download:
 * Unzip the zip file
 * Read the LICENSE and README
 * Now Execute  
-java WebServePi.jar
+java -jar WebServePi.jar

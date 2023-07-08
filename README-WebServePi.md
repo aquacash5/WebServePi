@@ -42,5 +42,9 @@ https://github.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/blob/
 * wiringPi Pin 4, LED
 * wiringPi Pin 5, additional Soft Button output pin to Hard Button "pressed input pin"
 
-Execute:  
-java -jar WebServePi.jar
+Execute after download:
+* Download WebServePi-xx.xx.xx.zip
+* Unzip the zip file
+* Read the LICENSE and README
+* Now Execute  
+java WebServePi.jar

@@ -14,12 +14,12 @@ Initial Copyright 2023 Chris Lukin
 
 ## Open-Source Credits and other references
 
-- https://pi4j.com/
-- http://wiringpi.com/
-- https://docs.oracle.com/en/java/javase/11/docs/api/jdk.httpserver/com/sun/net/httpserver/package-use.html#com.sun.net.httpserver
-- https://github.com/FasterXML/jackson
-- https://javadoc.io/static/com.corundumstudio.socketio/netty-socketio/1.7.19/com/corundumstudio/socketio/SocketIOServer.html
-- https://github.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/blob/main/Tutorial.pdf
+- [Pi4J](https://pi4j.com/)
+- [Wiring Pi](http://wiringpi.com/)
+- [Java HttpServer Docs](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.httpserver/com/sun/net/httpserver/package-use.html#com.sun.net.httpserver)
+- [Jackson](https://github.com/FasterXML/jackson)
+- [SocketIOServer](https://javadoc.io/static/com.corundumstudio.socketio/netty-socketio/1.7.19/com/corundumstudio/socketio/SocketIOServer.html)
+- [Freenove Raspberry Pi Starter Kit](https://raw.githubusercontent.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/main/Tutorial.pdf)
 
 # Setup
 

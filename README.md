@@ -51,7 +51,7 @@ java --version
 
 ## Circuit
 
-1. Reference [Project 2.1 Push Button Switch & LED](https://github.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/blob/main/Tutorial.pdf)
+1. Reference [Project 2.1 Push Button Switch & LED](https://raw.githubusercontent.com/Freenove/Freenove_Complete_Starter_Kit_for_Raspberry_Pi/main/Tutorial.pdf)
 
 2. The following changes:
 

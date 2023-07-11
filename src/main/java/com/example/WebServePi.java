@@ -32,7 +32,8 @@ package com.example;
 *  Revisions:
 *      DATE          by whom                   for what
 *     --------------+----------------------+---------------------------------
-*     xx/xx/xxxx     MyName OrInitials      Next update history goes here
+*     07/11/2023     Kyle J. Bloom          Move runtime to resources
+*     MM/DD/YYYY     MyName OrInitials      Next update history goes here
 * Version X.X starts here
 *
 *****************************************************************************
@@ -215,10 +216,10 @@ public class WebServePi {
         if (bRaspBPi)
             strindexfile = "index_pi.html";
 
-        indexhtml = ReadFileContentsAsBytesFromClassJar("/runtime/" + strindexfile).getBytes();
-        sio = ReadFileContentsAsBytesFromClassJar("/runtime/socket.io.js").getBytes();
-        mytestjs = ReadFileContentsAsBytesFromClassJar("/runtime/mytest.js").getBytes();
-        mystylescss = ReadFileContentsAsBytesFromClassJar("/runtime/mystyles.css").getBytes();
+        indexhtml = ReadFileContentsAsBytesFromClassJar("/www/" + strindexfile).getBytes();
+        sio = ReadFileContentsAsBytesFromClassJar("/www/js/socket.io.js").getBytes();
+        mytestjs = ReadFileContentsAsBytesFromClassJar("/www/js/mytest.js").getBytes();
+        mystylescss = ReadFileContentsAsBytesFromClassJar("/www/styles/mystyles.css").getBytes();
 
     }
 

@@ -39,22 +39,6 @@ package com.example;
 *****************************************************************************
 */
 
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketConfig;
-import com.corundumstudio.socketio.SocketIOServer;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pi4j.io.gpio.*;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
-import com.pi4j.io.gpio.trigger.GpioBlinkStateTrigger;
-import com.pi4j.io.gpio.trigger.GpioBlinkStopStateTrigger;
-import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -67,8 +51,27 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
+import com.corundumstudio.socketio.Configuration;
+import com.corundumstudio.socketio.SocketConfig;
+import com.corundumstudio.socketio.SocketIOServer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalInput;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.PinPullResistance;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import com.pi4j.io.gpio.trigger.GpioBlinkStateTrigger;
+import com.pi4j.io.gpio.trigger.GpioBlinkStopStateTrigger;
+import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 
 public class WebServePi {
 
@@ -79,10 +82,8 @@ public class WebServePi {
     private static final int PORT = 6180;
     private static final int SOCK_PORT = (PORT + 1);
 
-    // private static final boolean bDEBUG = new Boolean(false);
-    private static final boolean bDEBUG = FALSE;
-    // private static final boolean bDEBUG = new Boolean(true);
-    // private static final boolean bDEBUG = TRUE;
+    private static final boolean bDEBUG = false;
+    // private static final boolean bDEBUG = true;
 
     private static HttpServer httpServer;
 
@@ -205,7 +206,6 @@ public class WebServePi {
 
     // Cache WebClient files
     private static void GetWebClientFiles() {
-
         String strindexfile = "index.html";
         if (bRaspBPi)
             strindexfile = "index_pi.html";
@@ -304,7 +304,6 @@ public class WebServePi {
 
             if (t.getRequestURI().toString().endsWith("/")) {
                 // Serve index.html
-
                 byte[] html = indexhtml;
 
                 // Console output file

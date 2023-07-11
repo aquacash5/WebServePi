@@ -34,6 +34,7 @@ package com.example;
 *     --------------+----------------------+---------------------------------
 *     07/11/2023     Kyle J. Bloom          Move runtime to resources
 *     07/11/2023     Kyle J. Bloom          Refactor DetectRaspBPi
+*     07/11/2023     Kyle J. Bloom          Extract HttpHandlers to StaticResource
 *     MM/DD/YYYY     MyName OrInitials      Next update history goes here
 * Version X.X starts here
 *
@@ -41,9 +42,7 @@ package com.example;
 */
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -68,9 +67,6 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.io.gpio.trigger.GpioBlinkStateTrigger;
 import com.pi4j.io.gpio.trigger.GpioBlinkStopStateTrigger;
 import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 public class WebServePi {
@@ -90,12 +86,6 @@ public class WebServePi {
     private static SocketIOServer sioserver;
 
     private static WebServePi server = null;
-
-    // Web Client files to serve
-    private static byte[] indexhtml = null;
-    private static byte[] sio = null;
-    private static byte[] mytestjs = null;
-    private static byte[] mystylescss = null;
 
     private static boolean bRaspBPi = false;
 
@@ -125,12 +115,29 @@ public class WebServePi {
     }
 
     public void start() throws Exception {
+        String indexHtml = "/www/index.html";
+        if (bRaspBPi) {
+            indexHtml = "/www/index_pi.html";
+        }
+
         // Create HTTP server
         httpServer = HttpServer.create(new InetSocketAddress(PORT), 0);
-        httpServer.createContext("/", new MyHandler());
-        httpServer.createContext("/sio", new MyJSSocketIOClient());
-        httpServer.createContext("/js", new MyJSHandler());
-        httpServer.createContext("/css", new MyCSSHandler());
+        httpServer.createContext("/",
+                StaticResource.builder(indexHtml)
+                        .setDebug(bDEBUG)
+                        .build());
+        httpServer.createContext("/js/socket.io.js",
+                StaticResource.builder("/www/js/socket.io.js")
+                        .setDebug(bDEBUG)
+                        .build());
+        httpServer.createContext("/js/mytest.js",
+                StaticResource.builder("/www/js/mytest.js")
+                        .setDebug(bDEBUG)
+                        .build());
+        httpServer.createContext("/css/mystyles.css",
+                StaticResource.builder("/www/styles/mystyles.css")
+                        .setDebug(bDEBUG)
+                        .build());
         // httpServer.setExecutor(Executors.newCachedThreadPool());
         httpServer.setExecutor(Executors.newFixedThreadPool(5));
         httpServer.start();
@@ -199,21 +206,6 @@ public class WebServePi {
         // Possible future upgrade; web port to be upgraded to SocketIO port
         sioserver.start();
         System.out.println("SocketIOServer started on port " + SOCK_PORT);
-
-        // Get Web Client files to serve
-        GetWebClientFiles();
-    }
-
-    // Cache WebClient files
-    private static void GetWebClientFiles() {
-        String strindexfile = "index.html";
-        if (bRaspBPi)
-            strindexfile = "index_pi.html";
-
-        indexhtml = ReadFileContentsAsBytesFromClassJar("/www/" + strindexfile).getBytes();
-        sio = ReadFileContentsAsBytesFromClassJar("/www/js/socket.io.js").getBytes();
-        mytestjs = ReadFileContentsAsBytesFromClassJar("/www/js/mytest.js").getBytes();
-        mystylescss = ReadFileContentsAsBytesFromClassJar("/www/styles/mystyles.css").getBytes();
     }
 
     // Setup Raspberry Pi for inputs and outputs
@@ -294,88 +286,6 @@ public class WebServePi {
         }
     }
 
-    // Serve Entry Web page
-    private static class MyHandler implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            if (bDEBUG) {
-                System.out.println("URI request: " + t.getRequestURI());
-                System.out.println("Ends with / :" + t.getRequestURI().toString().endsWith("/"));
-            }
-
-            if (t.getRequestURI().toString().endsWith("/")) {
-                // Serve index.html
-                byte[] html = indexhtml;
-
-                // Console output file
-                // System.out.println("Serve JAR String index.html:\n" + new String(indexhtml));
-
-                // System.out.println("html Index: \n" + new String(html));
-                // System.out.println("html Index Length: " + html.length);
-
-                Headers headers = t.getResponseHeaders();
-                headers.add("Content-Type", "text/html");
-                t.sendResponseHeaders(200, html.length);
-                t.getResponseBody().write(html);
-                t.getResponseBody().close();
-
-            }
-        }
-    }
-
-    // Serve Javascript
-    private static class MyJSHandler implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            if (bDEBUG)
-                System.out.println("Request URI: " + t.getRequestURI());
-            if (t.getRequestURI().toString().endsWith("mytest.js")) {
-
-                byte[] js = mytestjs;
-
-                Headers headers = t.getResponseHeaders();
-                headers.add("Content-Type", "application/javascript");
-                t.sendResponseHeaders(200, js.length);
-                t.getResponseBody().write(js);
-                t.getResponseBody().close();
-            }
-        }
-    }
-
-    // Serve Socket.io
-    private static class MyJSSocketIOClient implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            if (bDEBUG)
-                System.out.println("Request URI: " + t.getRequestURI());
-            if (t.getRequestURI().toString().endsWith("socket.io.js")) {
-
-                byte[] js = sio;
-
-                Headers headers = t.getResponseHeaders();
-                headers.add("Content-Type", "application/javascript");
-                t.sendResponseHeaders(200, js.length);
-                t.getResponseBody().write(js);
-                t.getResponseBody().close();
-            }
-        }
-    }
-
-    // Serve CSS
-    private static class MyCSSHandler implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            if (bDEBUG)
-                System.out.println("Request URI: " + t.getRequestURI());
-            if (t.getRequestURI().toString().endsWith("mystyles.css")) {
-
-                byte[] css = mystylescss;
-
-                Headers headers = t.getResponseHeaders();
-                headers.add("Content-Type", "text/css");
-                t.sendResponseHeaders(200, css.length);
-                t.getResponseBody().write(css);
-                t.getResponseBody().close();
-            }
-        }
-    }
-
     static boolean DetectRaspBPi() {
         try {
             String content = Files.readString(Paths.get("/proc/device-tree/model"));
@@ -384,31 +294,5 @@ public class WebServePi {
             // Ignore
         }
         return false;
-    }
-
-    // Helpers
-    private static String ReadFileContentsAsBytesFromClassJar(String filePath) {
-        String fileContents = null;
-        byte[] fileBytes = null;
-        try {
-            // Get the input stream for the text file
-            // InputStream inputStream = this.getClass().getResourceAsStream(filePath);
-            InputStream inputStream = server.getClass().getResourceAsStream(filePath);
-
-            // Read all bytes from the input stream
-            fileBytes = inputStream.readAllBytes();
-
-            // Convert bytes to a string using UTF-8 encoding
-            fileContents = new String(fileBytes, StandardCharsets.UTF_8);
-
-            // Print the file contents
-            // System.out.println(fileContents);
-
-            // Close the input stream
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return fileContents;
     }
 }

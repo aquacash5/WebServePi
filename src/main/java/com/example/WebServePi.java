@@ -33,21 +33,21 @@ package com.example;
 *      DATE          by whom                   for what
 *     --------------+----------------------+---------------------------------
 *     07/11/2023     Kyle J. Bloom          Move runtime to resources
+*     07/11/2023     Kyle J. Bloom          Refactor DetectRaspBPi
 *     MM/DD/YYYY     MyName OrInitials      Next update history goes here
 * Version X.X starts here
 *
 *****************************************************************************
 */
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
@@ -376,40 +376,17 @@ public class WebServePi {
         }
     }
 
-    // Use Helpers for info
-    private static StringBuilder StringBuilderResult;
-    private static ArrayList ListStringBuilderResult;
-
     static boolean DetectRaspBPi() {
-        GetInfoByExecuteCommandLinux("cat /proc/device-tree/model", false);
-        return StringBuilderResult.toString().toLowerCase().contains("raspberry");
+        try {
+            String content = Files.readString(Paths.get("/proc/device-tree/model"));
+            return content.toLowerCase().contains("raspberry");
+        } catch (IOException e) {
+            // Ignore
+        }
+        return false;
     }
 
     // Helpers
-    private static void GetInfoByExecuteCommandLinux(String command, boolean getList) {
-        try {
-            Process pb = new ProcessBuilder("bash", "-c", command).start();
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(pb.getInputStream()));
-            String line;
-            if (getList) {
-                ListStringBuilderResult = new ArrayList<>();
-            } else {
-                StringBuilderResult = new StringBuilder();
-
-                while ((line = reader.readLine()) != null) {
-                    if (getList) {
-                        ListStringBuilderResult.add(line);
-                    } else {
-                        StringBuilderResult.append(line);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     private static String ReadFileContentsAsBytesFromClassJar(String filePath) {
         String fileContents = null;
         byte[] fileBytes = null;

@@ -121,7 +121,6 @@ public class WebServePi {
         }
 
         server.start();
-
     }
 
     public void start() throws Exception {
@@ -202,7 +201,6 @@ public class WebServePi {
 
         // Get Web Client files to serve
         GetWebClientFiles();
-
     }
 
     // Cache WebClient files
@@ -216,7 +214,6 @@ public class WebServePi {
         sio = ReadFileContentsAsBytesFromClassJar("/www/js/socket.io.js").getBytes();
         mytestjs = ReadFileContentsAsBytesFromClassJar("/www/js/mytest.js").getBytes();
         mystylescss = ReadFileContentsAsBytesFromClassJar("/www/styles/mystyles.css").getBytes();
-
     }
 
     // Setup Raspberry Pi for inputs and outputs
@@ -294,9 +291,7 @@ public class WebServePi {
                     sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
                 }
             });
-
         }
-
     }
 
     // Serve Entry Web page
@@ -331,7 +326,6 @@ public class WebServePi {
     // Serve Javascript
     private static class MyJSHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-
             if (bDEBUG)
                 System.out.println("Request URI: " + t.getRequestURI());
             if (t.getRequestURI().toString().endsWith("mytest.js")) {
@@ -412,11 +406,9 @@ public class WebServePi {
                     }
                 }
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private static String ReadFileContentsAsBytesFromClassJar(String filePath) {
@@ -442,7 +434,5 @@ public class WebServePi {
             e.printStackTrace();
         }
         return fileContents;
-
     }
-
 }

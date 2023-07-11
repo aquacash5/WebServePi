@@ -79,10 +79,10 @@ public class WebServePi {
     private static final int PORT = 6180;
     private static final int SOCK_PORT = (PORT + 1);
 
-    //private static final boolean bDEBUG = new Boolean(false);
+    // private static final boolean bDEBUG = new Boolean(false);
     private static final boolean bDEBUG = FALSE;
-    //private static final boolean bDEBUG = new Boolean(true);
-    //private static final boolean bDEBUG = TRUE;
+    // private static final boolean bDEBUG = new Boolean(true);
+    // private static final boolean bDEBUG = TRUE;
 
     private static HttpServer httpServer;
 
@@ -96,8 +96,7 @@ public class WebServePi {
     private static byte[] mytestjs = null;
     private static byte[] mystylescss = null;
 
-
-   private static boolean bRaspBPi = false;
+    private static boolean bRaspBPi = false;
 
     // create gpio controller
     private static GpioPinDigitalOutput mySoftButton;
@@ -108,18 +107,16 @@ public class WebServePi {
         // BasicConfigurator.configure();
         System.out.println(System.getProperty("os.name"));
 
-
-        //WebServePi server = new WebServePi();
+        // WebServePi server = new WebServePi();
         server = new WebServePi();
 
-       bRaspBPi = DetectRaspBPi();
-       System.out.println("Device RaspberryPi: " + bRaspBPi);
+        bRaspBPi = DetectRaspBPi();
+        System.out.println("Device RaspberryPi: " + bRaspBPi);
 
         if (bRaspBPi) {
             System.out.println("RaspberryPi Found");
             DoRasp();
-        }
-        else {
+        } else {
             System.out.println("RaspberryPi NOT Found");
         }
 
@@ -134,15 +131,14 @@ public class WebServePi {
         httpServer.createContext("/sio", new MyJSSocketIOClient());
         httpServer.createContext("/js", new MyJSHandler());
         httpServer.createContext("/css", new MyCSSHandler());
-        //httpServer.setExecutor(Executors.newCachedThreadPool());
+        // httpServer.setExecutor(Executors.newCachedThreadPool());
         httpServer.setExecutor(Executors.newFixedThreadPool(5));
         httpServer.start();
         System.out.println("HTTP Server started on port " + PORT);
 
-
         // Set SocketIO config
         Configuration config = new Configuration();
-        //config.setHostname("localhost");
+        // config.setHostname("localhost");
         config.setPort(SOCK_PORT);
         SocketConfig socketConfig = new SocketConfig();
         socketConfig.setReuseAddress(true);
@@ -188,7 +184,7 @@ public class WebServePi {
                 mySoftButton.low();
             }
 
-            //Possible memory leak; left this in place just in case
+            // Possible memory leak; left this in place just in case
             objectMapper = null;
 
         });
@@ -204,7 +200,7 @@ public class WebServePi {
         sioserver.start();
         System.out.println("SocketIOServer started on port " + SOCK_PORT);
 
-         // Get Web Client files to serve
+        // Get Web Client files to serve
         GetWebClientFiles();
 
     }
@@ -228,11 +224,11 @@ public class WebServePi {
         if (bRaspBPi) {
             System.out.println("Do Rasp");
 
-
             // Create gpio controller
             final GpioController gpio = GpioFactory.getInstance();
 
-            // Create Hard button on pin #02 as an input pin with its internal pull down resistor enabled
+            // Create Hard button on pin #02 as an input pin with its internal pull down
+            // resistor enabled
             final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
                     PinPullResistance.PULL_DOWN);
 
@@ -242,20 +238,23 @@ public class WebServePi {
 
             System.out.println("Creation mySoftButton: " + mySoftButton.toString());
 
-            System.out.println("*-> Complete the GPIO #02,#04,#05 circuit and see the blink trigger with soft button control.");
+            System.out.println(
+                    "*-> Complete the GPIO #02,#04,#05 circuit and see the blink trigger with soft button control.");
 
             // Setup LED pin #04 as output pin, make sure they are all LOW at startup
             final GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW);
 
-            // Hard Button trigger on the input pin ; when the input goes HIGH, turn on blinking
+            // Hard Button trigger on the input pin ; when the input goes HIGH, turn on
+            // blinking
             myButton.addTrigger(new GpioBlinkStateTrigger(PinState.HIGH, myLed, 250));
 
             // Button trigger on the input pin ; when the input goes LOW, turn off blinking
             myButton.addTrigger(new GpioBlinkStopStateTrigger(PinState.LOW, myLed));
 
-            // Button Basic callback; software to decide event; currently no functionality implemented
+            // Button Basic callback; software to decide event; currently no functionality
+            // implemented
             myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
-                public Void call()  {
+                public Void call() {
                     System.out.println(" --> myButton GPIO TRIGGER CALLBACK RECEIVED ");
                     return null;
                 }
@@ -266,11 +265,11 @@ public class WebServePi {
                 @Override
                 public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                     // display pin state on console
-                    //  "GPIO 2" <GPIO 2> = LOW or HIGH
+                    // "GPIO 2" <GPIO 2> = LOW or HIGH
                     var dstr = LocalDateTime.now()
                             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
                     var strPinState = event.getPin().getPin() + " = " + event.getState();
-                    var dstr_data = dstr + " -> " +strPinState;
+                    var dstr_data = dstr + " -> " + strPinState;
 
                     System.out.println("[" + dstr +
                             "] --> GPIO PIN STATE CHANGE: " + strPinState);
@@ -283,7 +282,7 @@ public class WebServePi {
                 @Override
                 public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                     // display pin state on console
-                    //  "GPIO 4" = LOW or HIGH
+                    // "GPIO 4" = LOW or HIGH
                     var dstr = LocalDateTime.now()
                             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
                     var strPinState = event.getPin().getPin() + " = " + event.getState();
@@ -297,8 +296,6 @@ public class WebServePi {
             });
 
         }
-
-
 
     }
 
@@ -316,11 +313,10 @@ public class WebServePi {
                 byte[] html = indexhtml;
 
                 // Console output file
-                //System.out.println("Serve JAR String index.html:\n" + new String(indexhtml));
+                // System.out.println("Serve JAR String index.html:\n" + new String(indexhtml));
 
-
-                //System.out.println("html Index: \n" + new String(html));
-                //System.out.println("html Index Length: " + html.length);
+                // System.out.println("html Index: \n" + new String(html));
+                // System.out.println("html Index Length: " + html.length);
 
                 Headers headers = t.getResponseHeaders();
                 headers.add("Content-Type", "text/html");
@@ -337,7 +333,7 @@ public class WebServePi {
         public void handle(HttpExchange t) throws IOException {
 
             if (bDEBUG)
-               System.out.println("Request URI: " + t.getRequestURI());
+                System.out.println("Request URI: " + t.getRequestURI());
             if (t.getRequestURI().toString().endsWith("mytest.js")) {
 
                 byte[] js = mytestjs;
@@ -387,10 +383,10 @@ public class WebServePi {
         }
     }
 
-
     // Use Helpers for info
     private static StringBuilder StringBuilderResult;
     private static ArrayList ListStringBuilderResult;
+
     static boolean DetectRaspBPi() {
         GetInfoByExecuteCommandLinux("cat /proc/device-tree/model", false);
         return StringBuilderResult.toString().toLowerCase().contains("raspberry");
@@ -421,35 +417,32 @@ public class WebServePi {
             System.out.println(e.getMessage());
         }
 
-
     }
 
-        private static String ReadFileContentsAsBytesFromClassJar(String filePath) {
-            String fileContents = null;
-            byte[] fileBytes = null;
-            try {
-                // Get the input stream for the text file
-                //InputStream inputStream = this.getClass().getResourceAsStream(filePath);
-                InputStream inputStream = server.getClass().getResourceAsStream(filePath);
+    private static String ReadFileContentsAsBytesFromClassJar(String filePath) {
+        String fileContents = null;
+        byte[] fileBytes = null;
+        try {
+            // Get the input stream for the text file
+            // InputStream inputStream = this.getClass().getResourceAsStream(filePath);
+            InputStream inputStream = server.getClass().getResourceAsStream(filePath);
 
-                // Read all bytes from the input stream
-                fileBytes = inputStream.readAllBytes();
+            // Read all bytes from the input stream
+            fileBytes = inputStream.readAllBytes();
 
-                // Convert bytes to a string using UTF-8 encoding
-                fileContents = new String(fileBytes, StandardCharsets.UTF_8);
+            // Convert bytes to a string using UTF-8 encoding
+            fileContents = new String(fileBytes, StandardCharsets.UTF_8);
 
-                // Print the file contents
-                //System.out.println(fileContents);
+            // Print the file contents
+            // System.out.println(fileContents);
 
-                // Close the input stream
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return fileContents;
-
+            // Close the input stream
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return fileContents;
 
-
+    }
 
 }

@@ -35,6 +35,7 @@ package com.example;
 *     07/11/2023     Kyle J. Bloom          Move runtime to resources
 *     07/11/2023     Kyle J. Bloom          Refactor DetectRaspBPi
 *     07/11/2023     Kyle J. Bloom          Extract HttpHandlers to StaticResource
+*     07/11/2023     Kyle J. Bloom          Remove bRaspBPi global
 *     MM/DD/YYYY     MyName OrInitials      Next update history goes here
 * Version X.X starts here
 *
@@ -87,8 +88,6 @@ public class WebServePi {
 
     private static WebServePi server = null;
 
-    private static boolean bRaspBPi = false;
-
     // create gpio controller
     private static GpioPinDigitalOutput mySoftButton;
 
@@ -101,22 +100,22 @@ public class WebServePi {
         // WebServePi server = new WebServePi();
         server = new WebServePi();
 
-        bRaspBPi = DetectRaspBPi();
-        System.out.println("Device RaspberryPi: " + bRaspBPi);
+        boolean isRaspberryPi = DetectRaspBPi();
+        System.out.println("Device RaspberryPi: " + isRaspberryPi);
 
-        if (bRaspBPi) {
+        if (isRaspberryPi) {
             System.out.println("RaspberryPi Found");
             DoRasp();
         } else {
             System.out.println("RaspberryPi NOT Found");
         }
 
-        server.start();
+        server.start(isRaspberryPi);
     }
 
-    public void start() throws Exception {
+    public void start(boolean isRaspberryPi) throws Exception {
         String indexHtml = "/www/index.html";
-        if (bRaspBPi) {
+        if (isRaspberryPi) {
             indexHtml = "/www/index_pi.html";
         }
 
@@ -193,7 +192,6 @@ public class WebServePi {
 
             // Possible memory leak; left this in place just in case
             objectMapper = null;
-
         });
 
         // Currently no client code for RT_DISCONNECT; more discovery design for this
@@ -210,80 +208,78 @@ public class WebServePi {
 
     // Setup Raspberry Pi for inputs and outputs
     private static void DoRasp() {
-        if (bRaspBPi) {
-            System.out.println("Do Rasp");
+        System.out.println("Do Rasp");
 
-            // Create gpio controller
-            final GpioController gpio = GpioFactory.getInstance();
+        // Create gpio controller
+        final GpioController gpio = GpioFactory.getInstance();
 
-            // Create Hard button on pin #02 as an input pin with its internal pull down
-            // resistor enabled
-            final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
-                    PinPullResistance.PULL_DOWN);
+        // Create Hard button on pin #02 as an input pin with its internal pull down
+        // resistor enabled
+        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
+                PinPullResistance.PULL_DOWN);
 
-            // Create mySoftButton as output, which provides similar output as Hard button
-            mySoftButton = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05,
-                    PinState.LOW);
+        // Create mySoftButton as output, which provides similar output as Hard button
+        mySoftButton = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05,
+                PinState.LOW);
 
-            System.out.println("Creation mySoftButton: " + mySoftButton.toString());
+        System.out.println("Creation mySoftButton: " + mySoftButton.toString());
 
-            System.out.println(
-                    "*-> Complete the GPIO #02,#04,#05 circuit and see the blink trigger with soft button control.");
+        System.out.println(
+                "*-> Complete the GPIO #02,#04,#05 circuit and see the blink trigger with soft button control.");
 
-            // Setup LED pin #04 as output pin, make sure they are all LOW at startup
-            final GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW);
+        // Setup LED pin #04 as output pin, make sure they are all LOW at startup
+        final GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW);
 
-            // Hard Button trigger on the input pin ; when the input goes HIGH, turn on
-            // blinking
-            myButton.addTrigger(new GpioBlinkStateTrigger(PinState.HIGH, myLed, 250));
+        // Hard Button trigger on the input pin ; when the input goes HIGH, turn on
+        // blinking
+        myButton.addTrigger(new GpioBlinkStateTrigger(PinState.HIGH, myLed, 250));
 
-            // Button trigger on the input pin ; when the input goes LOW, turn off blinking
-            myButton.addTrigger(new GpioBlinkStopStateTrigger(PinState.LOW, myLed));
+        // Button trigger on the input pin ; when the input goes LOW, turn off blinking
+        myButton.addTrigger(new GpioBlinkStopStateTrigger(PinState.LOW, myLed));
 
-            // Button Basic callback; software to decide event; currently no functionality
-            // implemented
-            myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
-                public Void call() {
-                    System.out.println(" --> myButton GPIO TRIGGER CALLBACK RECEIVED ");
-                    return null;
-                }
-            }));
+        // Button Basic callback; software to decide event; currently no functionality
+        // implemented
+        myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
+            public Void call() {
+                System.out.println(" --> myButton GPIO TRIGGER CALLBACK RECEIVED ");
+                return null;
+            }
+        }));
 
-            // Button callback listener for change of state
-            myButton.addListener(new GpioPinListenerDigital() {
-                @Override
-                public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                    // display pin state on console
-                    // "GPIO 2" <GPIO 2> = LOW or HIGH
-                    var dstr = LocalDateTime.now()
-                            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-                    var strPinState = event.getPin().getPin() + " = " + event.getState();
-                    var dstr_data = dstr + " -> " + strPinState;
+        // Button callback listener for change of state
+        myButton.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                // display pin state on console
+                // "GPIO 2" <GPIO 2> = LOW or HIGH
+                var dstr = LocalDateTime.now()
+                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+                var strPinState = event.getPin().getPin() + " = " + event.getState();
+                var dstr_data = dstr + " -> " + strPinState;
 
-                    System.out.println("[" + dstr +
-                            "] --> GPIO PIN STATE CHANGE: " + strPinState);
-                    sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
-                }
-            });
+                System.out.println("[" + dstr +
+                        "] --> GPIO PIN STATE CHANGE: " + strPinState);
+                sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
+            }
+        });
 
-            // LED callback listener for change of state
-            myLed.addListener(new GpioPinListenerDigital() {
-                @Override
-                public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                    // display pin state on console
-                    // "GPIO 4" = LOW or HIGH
-                    var dstr = LocalDateTime.now()
-                            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-                    var strPinState = event.getPin().getPin() + " = " + event.getState();
-                    var dstr_data = dstr + " -> " + strPinState;
+        // LED callback listener for change of state
+        myLed.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                // display pin state on console
+                // "GPIO 4" = LOW or HIGH
+                var dstr = LocalDateTime.now()
+                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+                var strPinState = event.getPin().getPin() + " = " + event.getState();
+                var dstr_data = dstr + " -> " + strPinState;
 
-                    System.out.println("[" + dstr +
-                            "] --> GPIO PIN STATE CHANGE: " + strPinState);
+                System.out.println("[" + dstr +
+                        "] --> GPIO PIN STATE CHANGE: " + strPinState);
 
-                    sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
-                }
-            });
-        }
+                sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
+            }
+        });
     }
 
     static boolean DetectRaspBPi() {

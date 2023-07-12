@@ -84,7 +84,7 @@ public class WebServePi {
 
     private static HttpServer httpServer;
 
-    private static SocketIOServer sioserver;
+    private static SocketIOServer sioServer;
 
     private static WebServePi server = null;
 
@@ -152,26 +152,26 @@ public class WebServePi {
 
         // Create SocketIO server
         // SocketIOServer server = new SocketIOServer(config);
-        sioserver = new SocketIOServer(config);
+        sioServer = new SocketIOServer(config);
 
         // Add Message handler for RT_MESSAGE
-        sioserver.addEventListener(RT_MESSAGE, String.class, (client, data, ackSender) -> {
+        sioServer.addEventListener(RT_MESSAGE, String.class, (client, data, ackSender) -> {
             // Callback for "rt_message" event
             var dstr_data = LocalDateTime.now()
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + " -> " + data;
             System.out.println("Received message from client: " + dstr_data);
-            sioserver.getBroadcastOperations().sendEvent(RT_MESSAGE, dstr_data);
+            sioServer.getBroadcastOperations().sendEvent(RT_MESSAGE, dstr_data);
         });
 
         // Add Message handler for RTPI_MESSAGE
-        sioserver.addEventListener(RTPI_MESSAGE, String.class, (client, data, ackSender) -> {
+        sioServer.addEventListener(RTPI_MESSAGE, String.class, (client, data, ackSender) -> {
             // Callback for "rtpi_message" event
             var dstr_data = LocalDateTime.now()
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + " -> PI: " + data;
             System.out.println("Received client PI message from client: " + dstr_data);
             if (bDEBUG) {
                 // do this for debugging
-                sioserver.getBroadcastOperations().sendEvent(RTPI_MESSAGE, dstr_data);
+                sioServer.getBroadcastOperations().sendEvent(RTPI_MESSAGE, dstr_data);
             }
 
             // Process RTPI_MESSAGE for software button
@@ -195,14 +195,14 @@ public class WebServePi {
         });
 
         // Currently no client code for RT_DISCONNECT; more discovery design for this
-        sioserver.addEventListener(RT_DISCONNECT, Void.class, (client, data, ackSender) -> {
+        sioServer.addEventListener(RT_DISCONNECT, Void.class, (client, data, ackSender) -> {
             // Callback for "disconnect" event
             System.out.println("Client disconnected: " + client.getSessionId());
         });
 
         // Start the SocketIO server port
         // Possible future upgrade; web port to be upgraded to SocketIO port
-        sioserver.start();
+        sioServer.start();
         System.out.println("SocketIOServer started on port " + SOCK_PORT);
     }
 
@@ -259,7 +259,7 @@ public class WebServePi {
 
                 System.out.println("[" + dstr +
                         "] --> GPIO PIN STATE CHANGE: " + strPinState);
-                sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
+                sioServer.getBroadcastOperations().sendEvent("rt_message", dstr_data);
             }
         });
 
@@ -277,7 +277,7 @@ public class WebServePi {
                 System.out.println("[" + dstr +
                         "] --> GPIO PIN STATE CHANGE: " + strPinState);
 
-                sioserver.getBroadcastOperations().sendEvent("rt_message", dstr_data);
+                sioServer.getBroadcastOperations().sendEvent("rt_message", dstr_data);
             }
         });
     }

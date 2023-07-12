@@ -133,7 +133,7 @@ public class WebServePi {
                 StaticResource.builder("/www/js/mytest.js")
                         .setDebug(bDEBUG)
                         .build());
-        httpServer.createContext("/css/mystyles.css",
+        httpServer.createContext("/styles/mystyles.css",
                 StaticResource.builder("/www/styles/mystyles.css")
                         .setDebug(bDEBUG)
                         .build());
